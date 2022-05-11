@@ -1,0 +1,77 @@
+* {
+    font-family: 'Karla', sans-serif;
+    color: #293264;
+}
+h2 {
+    font-size: 16px;
+    font-weight: 800px;
+}
+body {
+    background-color: #F5F7FB;
+}
+.quiz {
+    margin-top: 20px; 
+    margin-left: 75px;
+    width: 75%;
+}
+span {
+    margin-left: 20px;
+    margin-right: 50px;
+}
+label {
+    cursor: pointer;
+}
+input {
+    position: fixed;
+    opacity: 0;
+    cursor: pointer;
+}
+.field {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: solid 1px #293264;
+    border-radius: 5px;
+    min-width: 65px;
+    min-height: 20px;
+    padding: 0 10px;
+}
+.blue {
+    background: #D6DBF5;
+    border: 1px solid #D6DBF5;
+}
+.green {
+    background: #94D7A2;
+    border: 1px solid #94D7A2;
+}
+.red {
+    background: #F8BCBC;
+    border: 1px solid #F8BCBC;
+}
+.white {
+    background: white;
+}
+.white:hover {
+    border: 1px solid #D6DBF5;
+    background-color: #D6DBF5;
+    -webkit-transition: all 0.2s ease;
+}
+.outer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+button {
+    background: #4D5B9E;
+    color: white;
+    border: 0px;
+    border-radius: 5px;
+    font-family: 'Karla', sans-serif;
+    padding: 11px 21px 10px 22px;
+    margin: 20px 0;
+}
