@@ -1,4 +1,7 @@
 * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     font-family: 'Karla', sans-serif;
     color: #293264;
 }
@@ -10,9 +13,17 @@ body {
     background-color: #F5F7FB;
 }
 .quiz {
-    margin-top: 20px; 
     margin-left: 75px;
     width: 75%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.question {
+    margin: 20px 0;
+}
+.answer {
+    margin-bottom: 10px;
 }
 span {
     margin-left: 20px;
@@ -21,7 +32,7 @@ span {
 label {
     cursor: pointer;
 }
-input {
+.answers {
     position: fixed;
     opacity: 0;
     cursor: pointer;
@@ -39,7 +50,7 @@ input {
     border-radius: 5px;
     min-width: 65px;
     min-height: 20px;
-    padding: 0 10px;
+    padding: 5px 20px;
 }
 .blue {
     background: #D6DBF5;
@@ -75,3 +86,42 @@ button {
     padding: 11px 21px 10px 22px;
     margin: 20px 0;
 }
+.home {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 600px;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+button {
+    cursor: pointer;
+}
+select, .amount {
+    width: 500px;
+    height: 30px;
+}
+.allquizs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.header {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    margin-bottom: 20px;
+}
+.header h3, .header span {
+    cursor: pointer;
+}
+.header h3 {
+    padding-right: 20px;
+    border-right: 2px solid #293264;
+}
+

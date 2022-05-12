@@ -18,7 +18,8 @@ function Quiz({ name, question, suffledAnswer, correctAnswer, result, handleChan
 		}
 		return <div>
 			<label className={`container ${color}`}>
-					<input 
+					<input
+						className='answers'
 						type='radio' 
 						checked={ans.index == answer.index && ans.val == answer.val}
 						onChange={handleChange} 
