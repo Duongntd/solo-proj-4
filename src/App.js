@@ -1,6 +1,7 @@
 import React from 'react'
 import Quiz from './components/Quiz'
-
+import Home from './components/Home'
+import Header from './components/Header'
 
 function App() {
   const [quizs, setQuiz] = React.useState([])
@@ -8,12 +9,23 @@ function App() {
   const [gameOver, setGameOver] = React.useState(false)
   const [correctAnswers, setCorrectAnswers] = React.useState(0)
   const [newGame, setNewGame] = React.useState(false)
+  const [formData, setFormData] = React.useState({
+    amountOfQues: 3,
+    category: '',
+    difficulty: '',
+    type: ''
+  })
+
   // fetch data
   React.useEffect(() => {
     async function getData() {
       console.log('data fetched!')
-      const res = await fetch('https://opentdb.com/api.php?amount=5');
+      const res = await fetch(`https://opentdb.com/api.php?amount=${formData.amountOfQues}${formData.category}${formData.difficulty}${formData.type}`);
       const data = await res.json();
+      if (data.response_code == 1) {
+        alert('No question found!')
+        return
+      }
       // suffle answers => array of answers (object with index and value)
       const suffled = data.results.map((result, index) => {
       let unsuffledAnswers = [result.correct_answer];
@@ -86,21 +98,45 @@ function App() {
         setGameOver(true);
       }
     }
+
     function restartGame() {
       setNewGame(prev => !prev);
       setGameOver(false);
       setCorrectAnswers(0)
     }
+
+    function changeQuestions(event) {
+      const { name, value } = event.target
+      setFormData(prev => {
+        return {...prev, [name]: value}
+      })
+    }
+
+    function returnHome() {
+      setFormData(prev => {
+        return {...prev, amountOfQues: 0}
+      })
+      restartGame()
+    }
+    
   return (
-    <div >
-      {quizsMap}
-      <div className='outer'>
-        {gameOver && <span> You scored {correctAnswers}/5 correct answers</span>}
-        {!gameOver ? <button onClick={checkResult}>Check answers</button> : <button onClick={restartGame}>New game</button>} 
+    <div>
+      <Header render={quizs.length == 0} handleClick={returnHome} />
+      <Home 
+        formData={formData}
+        handleChange={changeQuestions}
+        handleClick={restartGame}
+        render={quizs.length == 0}
+      />
+      <div className='allquizs'>
+        {quizsMap}
       </div>
       
+      <div className='outer'>
+        {gameOver && <span> You scored {correctAnswers}/{formData.amountOfQues} correct answers</span>}
+        {!gameOver && quizs.length == 0 ? '' : !gameOver && quizs.length != 0 ? <button onClick={checkResult}>Check answers</button> : <button onClick={restartGame}>New game</button>} 
+      </div>
     </div>
-    
   )
 }
 
