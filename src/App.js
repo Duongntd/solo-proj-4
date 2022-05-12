@@ -119,7 +119,6 @@ function App() {
       })
       restartGame()
     }
-    console.log(chosenAnswers)
   return (
     <div>
       <Header render={quizs.length == 0} handleClick={returnHome} />

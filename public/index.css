@@ -86,6 +86,10 @@ button {
     padding: 11px 21px 10px 22px;
     margin: 20px 0;
 }
+button:hover {
+    background: #2d3a77;
+    -webkit-transition: all 0.2s ease;
+}
 .home {
     display: flex;
     gap: 20px;
