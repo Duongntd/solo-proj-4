@@ -4,7 +4,8 @@ function Home({ formData, handleChange, handleSubmit, render }) {
 
   return (
     <>
-      {render && <div className='home'>
+      {render && 
+      <div className='home'>
       <h1>Quizzical</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor='amount'>Amount of questions</label>

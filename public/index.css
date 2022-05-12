@@ -29,9 +29,6 @@ span {
     margin-left: 20px;
     margin-right: 50px;
 }
-label {
-    cursor: pointer;
-}
 .answers {
     position: fixed;
     opacity: 0;
@@ -43,6 +40,7 @@ label {
     gap: 12px;
 }
 .container {
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;

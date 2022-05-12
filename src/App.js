@@ -5,7 +5,7 @@ import Header from './components/Header'
 
 function App() {
   const [quizs, setQuiz] = React.useState([])
-  const [chosenAnswers, setChosenAnswers] = React.useState([{name: '', value: ''}])
+  const [chosenAnswers, setChosenAnswers] = React.useState([])
   const [gameOver, setGameOver] = React.useState(false)
   const [correctAnswers, setCorrectAnswers] = React.useState(0)
   const [newGame, setNewGame] = React.useState(false)
@@ -59,70 +59,78 @@ function App() {
     ans={quiz.answer}
     />
   )
-    function chooseAnswer(e) {
-      const index = e.target.name.slice(-1);
-      setChosenAnswers(prev => {
-        prev[index] = {name: index, value: e.target.value};
-        return [...prev]
-      })
-      setQuiz(prev => {
-        prev[index].answer = {index: index, val :e.target.value};
-        prev[index].result = 'answered';
-        return [...prev]
-      })
-    }
-    function checkResult() {
-      // get all correct answers
-      const allCorrectAnswers = []; 
-      quizsMap.forEach((quiz, index) => allCorrectAnswers.push({name: index.toString(), value: quiz.props.correctAnswer}));
-      // find any unanswered question
-      const found = quizs.find(quiz => quiz.result == 'unanswered');
-      if (found) {
-        alert('Please answer all questions')   
-      } else {
-        // set results
-        for (let i = 0; i < chosenAnswers.length; i++) {
-          if (chosenAnswers[i].value == allCorrectAnswers[i].value) {
-            setQuiz(prev => {
-              prev[i].result = 'correct';
-              return [...prev]
-            })
-            setCorrectAnswers(prev => prev + 1)
-          } else {
-            setQuiz(prev => {
-              prev[i].result = 'wrong';
-              return [...prev]
-            })
-          }
+  // set chosen answers to be an array of answers
+  function chooseAnswer(e) {
+    const index = e.target.name.slice(-1);
+    setChosenAnswers(prev => {
+      prev[index] = e.target.value;
+      return [...prev]
+    })
+    setQuiz(prev => {
+      prev[index].answer = {index: index, val :e.target.value};
+      prev[index].result = 'answered';
+      return [...prev]
+    })
+  }
+
+  function checkResult() {
+    // put all correct answers into an array
+    const allCorrectAnswers = []; 
+    quizsMap.forEach(quiz => allCorrectAnswers.push(quiz.props.correctAnswer));
+    // find any unanswered question
+    const found = quizs.find(quiz => quiz.result == 'unanswered');
+    if (found) {
+      alert('Please answer all questions')   
+    } else {
+      // compare chosen answers array and correct answers array
+      for (let i = 0; i < chosenAnswers.length; i++) {
+        if (chosenAnswers[i] == allCorrectAnswers[i]) {
+          // set results
+          setQuiz(prev => {
+            prev[i].result = 'correct';
+            return [...prev]
+          })
+          setCorrectAnswers(prev => prev + 1)
+        } else {
+          setQuiz(prev => {
+            prev[i].result = 'wrong';
+            return [...prev]
+          })
         }
-        setGameOver(true);
       }
+      setGameOver(true);
     }
+  }
 
-    function restartGame() {
-      setNewGame(prev => !prev);
-      setGameOver(false);
-      setCorrectAnswers(0)
-      setChosenAnswers([{name: '', value: ''}])
-    }
+  function restartGame() {
+    setNewGame(prev => !prev);
+    setGameOver(false);
+    setCorrectAnswers(0);
+    setChosenAnswers([])
+  }
+  // change type of questions in form
+  function changeQuestions(event) {
+    const { name, value } = event.target;
+    setFormData(prev => {
+      return {...prev, [name]: value}
+    })
+  }
 
-    function changeQuestions(event) {
-      const { name, value } = event.target
-      setFormData(prev => {
-        return {...prev, [name]: value}
-      })
-    }
-
-    function returnHome() {
-      setFormData(prev => {
-        return {...prev, amountOfQues: 0}
-      })
-      restartGame()
-    }
+  function returnHome() {
+    setFormData(prev => {
+      return {...prev, amountOfQues: 0}
+    })
+    restartGame()
+  }
+  
   return (
     <div>
-      <Header render={quizs.length == 0} handleClick={returnHome} />
+      <Header
+        render={quizs.length == 0}  
+        handleClick={returnHome}  
+      />
       <Home 
+        render={quizs.length == 0}
         formData={formData}
         handleChange={changeQuestions}
         handleSubmit={(e) => {
@@ -130,7 +138,6 @@ function App() {
           restartGame();
          }
         }
-        render={quizs.length == 0}
       />
       <div className='allquizs'>
         {quizsMap}
