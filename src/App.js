@@ -10,7 +10,7 @@ function App() {
   const [correctAnswers, setCorrectAnswers] = React.useState(0)
   const [newGame, setNewGame] = React.useState(false)
   const [formData, setFormData] = React.useState({
-    amountOfQues: 3,
+    amountOfQues: 0,
     category: '',
     difficulty: '',
     type: ''
@@ -118,7 +118,7 @@ function App() {
       })
       restartGame()
     }
-    
+
   return (
     <div>
       <Header render={quizs.length == 0} handleClick={returnHome} />
