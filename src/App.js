@@ -126,7 +126,11 @@ function App() {
       <Home 
         formData={formData}
         handleChange={changeQuestions}
-        handleClick={restartGame}
+        handleSubmit={(e) => {
+          e.preventDefault();
+          restartGame();
+         }
+        }
         render={quizs.length == 0}
       />
       <div className='allquizs'>

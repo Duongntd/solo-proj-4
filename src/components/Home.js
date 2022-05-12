@@ -1,12 +1,12 @@
 import React from 'react'
 
-function Home({ formData, handleChange, handleClick, render }) {
+function Home({ formData, handleChange, handleSubmit, render }) {
 
   return (
     <>
       {render && <div className='home'>
       <h1>Quizzical</h1>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label htmlFor='amount'>Amount of questions</label>
         <input type="text" name='amountOfQues' value={formData.amountOfQues} className={'amount'} onChange={handleChange} />
 
@@ -54,7 +54,7 @@ function Home({ formData, handleChange, handleClick, render }) {
           <option value='&type=multiple'>Multiple Choices</option>
         </select>  
       </form>
-      <button onClick={handleClick}>Create game</button>
+      <button onClick={handleSubmit}>Create game</button>
       </div>}
     </>
   )
