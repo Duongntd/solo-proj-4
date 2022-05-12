@@ -94,7 +94,7 @@ button {
     justify-content: center;
     height: 600px;
 }
-.form {
+form {
     display: flex;
     flex-direction: column;
     gap: 10px;
