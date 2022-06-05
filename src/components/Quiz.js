@@ -1,11 +1,11 @@
 import React from 'react'
 
-function Quiz({ name, question, suffledAnswer, correctAnswer, result, handleChange, ans }) {
+function Quiz({ name, question, category, difficulty, suffledAnswer, correctAnswer, result, handleChange, ans }) {
 	// map answers to radio input
 	const answers = suffledAnswer.map(answer => {
 		// change answers colors
 		let color = 'white';
-		if (ans.val == answer.val && ans.index == ans.index && result == 'correct') {
+		if (ans.val == answer.val && ans.index == answer.index && result == 'correct') {
 			color = 'green';
 		} else if (ans.val == answer.val && ans.index == answer.index && result == 'wrong') {
 			color = 'red'
@@ -25,7 +25,7 @@ function Quiz({ name, question, suffledAnswer, correctAnswer, result, handleChan
 						onChange={handleChange} 
 						value={answer.val} 
 						name={`question_${name}`} 
-						index={answer.index}
+						id={answer.index}
 					/>
 						{answer.val}
 			</label>
@@ -37,6 +37,10 @@ function Quiz({ name, question, suffledAnswer, correctAnswer, result, handleChan
     <div className='quiz'>
 			<div className='question'>
 				<h2>{question}</h2>
+				<p>
+					<span className='ctg'>Category - <b><i>{category}</i></b></span>
+					<span className='diff'>Difficulty - <b><i>{difficulty}</i></b></span>
+				</p>
 			</div>
 			<div  className='answer'>
 				<div className='field'>

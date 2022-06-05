@@ -22,10 +22,18 @@ body {
 .question {
     margin: 20px 0;
 }
+p {
+    margin-top: 5px;
+    font-size: small;
+}
+.ctg {
+    margin-left: 10px;
+    margin-right: 40px;
+}
 .answer {
     margin-bottom: 10px;
 }
-span {
+.score {
     margin-left: 20px;
     margin-right: 50px;
 }
@@ -95,6 +103,9 @@ button:hover {
     align-items: center;
     justify-content: center;
     height: 600px;
+}
+.header-home {
+    margin-left: 25px;
 }
 form {
     display: flex;

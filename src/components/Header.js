@@ -6,7 +6,7 @@ function Header({ render, handleClick }) {
     	{!render && 
 			<div className='header'>
       			<h3 onClick={handleClick}>Quizzical</h3>
-				<span onClick={handleClick}>Home</span>
+				<span className='header-home' onClick={handleClick}>Home</span>
    	  		</div>}
 		</>
   )

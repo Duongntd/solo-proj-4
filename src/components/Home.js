@@ -1,6 +1,54 @@
 import React from 'react'
 
 function Home({ formData, handleChange, handleSubmit, render }) {
+  const category = [
+    {value:'', text: 'Any Category'},
+    {value:'&category=9', text: 'General Knowledge'},
+    {value:"&category=10", text: 'Entertainment: Books'},
+    {value:"&category=12", text: 'Entertainment: Music'},
+    {value:"&category=13", text: 'Entertainment: Musicals & Theatres'},
+    {value:"&category=14", text: 'Television'},
+    {value:"&category=15", text: 'Video Games'},
+    {value:"&category=16", text: 'Boardgames'},
+    {value:"&category=17", text: 'Science & Nature'},
+    {value:"&category=18", text: 'Science: Computers'},
+    {value:"&category=19", text: 'Science: Maths'},
+    {value:"&category=20", text: 'Mythology'},
+    {value:"&category=21", text: 'Sports'},
+    {value:"&category=22", text: 'Geography'},
+    {value:"&category=23", text: 'History'},
+    {value:"&category=24", text: 'Politics'},
+    {value:"&category=25", text: 'Art'},
+    {value:"&category=26", text: 'Celebrities'},
+    {value:"&category=27", text: 'Animals'},
+    {value:"&category=28", text: 'Vehicles'},
+    {value:"&category=29", text: 'Entertainment: Comics'},
+    {value:"&category=30", text: 'Science: Gadgets'},
+    {value:"&category=31", text: 'Entertainment: Anime & Manga'},
+    {value:"&category=32", text: 'Entertainment: Cartoon & Animations'}
+  ]
+  const categoryMap = category.map(cat => {
+    return <option value={cat.value}>{cat.text}</option>
+  })
+  
+  const difficulty = [
+    {value: '', text: 'Any Difficulty'},
+    {value: '&difficulty=easy', text: 'Easy'},
+    {value: '&difficulty=medium', text: 'Medium'},
+    {value: '&difficulty=hard', text: 'Hard'}
+  ]
+  const difficultyMap = difficulty.map(diff => {
+    return <option value={diff.value}>{diff.text}</option>
+  })
+
+  const type = [
+    {value: '', text: 'Any Type'},
+    {value: '&type=boolean', text: 'True / False'},
+    {value: '&type=multiple', text: 'Multiple Choices'},
+  ]
+  const typeMap = type.map(typ => {
+    return <option value={typ.value}>{typ.text}</option>
+  })
 
   return (
     <>
@@ -8,51 +56,22 @@ function Home({ formData, handleChange, handleSubmit, render }) {
       <div className='home'>
       <h1>Quizzical</h1>
       <form onSubmit={handleSubmit}>
-        <label htmlFor='amount'>Amount of questions</label>
+        <label htmlFor='amount'>Amount of questions (max. 50)</label>
         <input type="text" name='amountOfQues' value={formData.amountOfQues} className={'amount'} onChange={handleChange} />
 
         <label htmlFor="category">Category</label>
         <select name="category" value={formData.category} onChange={handleChange}>
-          <option value=''>Any Category</option>
-          <option value='&category=9'>General Knowledge</option>
-          <option value="&category=10">Entertainment: Books</option>
-          <option value="&category=11">Entertainment: Film</option>
-          <option value="&category=12">Entertainment: Music</option>
-          <option value="&category=13">Entertainment: Musicals & Theatres</option>
-          <option value="&category=14">Television</option>
-          <option value="&category=15">Video Games</option>
-          <option value="&category=16">Boardgames</option>
-          <option value="&category=17">Science & Nature</option>
-          <option value="&category=18">Science: Computers</option>
-          <option value="&category=19">Science: Maths</option>
-          <option value="&category=20">Mythology</option>
-          <option value="&category=21">Sports</option>
-          <option value="&category=22">Geography</option>
-          <option value="&category=23">History</option>
-          <option value="&category=24">Politics</option>
-          <option value="&category=25">Art</option>
-          <option value="&category=26">Celebrities</option>
-          <option value="&category=27">Animals</option>
-          <option value="&category=28">Vehicles</option>
-          <option value="&category=29">Entertainment: Comics</option>
-          <option value="&category=30">Science: Gadgets</option>
-          <option value="&category=31">Entertainment: Anime & Manga</option>
-          <option value="&category=32">Entertainment: Cartoon & Animations</option>
+          {categoryMap}
         </select>
 
         <label htmlFor="difficulty">Difficulty</label>
         <select name="difficulty" value={formData.difficulty} onChange={handleChange}>
-          <option value=''>Any Difficulty</option>
-          <option value='&difficulty=easy'>Easy</option>
-          <option value='&difficulty=medium'>Medium</option>
-          <option value='&difficulty=hard'>Hard</option>
+          {difficultyMap}
         </select>
 
         <label htmlFor="type">Type</label>
         <select name="type" value={formData.type} onChange={handleChange}>
-          <option value=''>Any Type</option>
-          <option value='&type=boolean'>True / False</option>
-          <option value='&type=multiple'>Multiple Choices</option>
+          {typeMap}
         </select>  
       </form>
       <button onClick={handleSubmit}>Create game</button>
